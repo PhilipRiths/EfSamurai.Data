@@ -8,23 +8,14 @@ using EfSamurai.Data;
 namespace EfSamurai.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20170508093738_QuoteTypes")]
+    partial class QuoteTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("EfSamurai.Domain.HairStyle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HairStyle");
-                });
 
             modelBuilder.Entity("EfSamurai.Domain.Quotes", b =>
                 {
@@ -46,22 +37,10 @@ namespace EfSamurai.Data.Migrations
                     b.ToTable("Quotes");
                 });
 
-            modelBuilder.Entity("EfSamurai.Domain.QuoteTypes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuoteTypes");
-                });
-
             modelBuilder.Entity("EfSamurai.Domain.Samurai", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("HairStyleTypesId");
 
                     b.Property<int>("Healthpoints");
 
@@ -69,14 +48,12 @@ namespace EfSamurai.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HairStyleTypesId");
-
                     b.ToTable("Samurais");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.Quotes", b =>
                 {
-                    b.HasOne("EfSamurai.Domain.QuoteTypes", "QuouteTypes")
+                    b.HasOne("EfSamurai.Domain.Quotes", "QuouteTypes")
                         .WithMany()
                         .HasForeignKey("QuouteTypesId");
 
@@ -84,13 +61,6 @@ namespace EfSamurai.Data.Migrations
                         .WithMany("Quote")
                         .HasForeignKey("SamuraiId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.Samurai", b =>
-                {
-                    b.HasOne("EfSamurai.Domain.HairStyle", "HairStyleTypes")
-                        .WithMany()
-                        .HasForeignKey("HairStyleTypesId");
                 });
         }
     }
