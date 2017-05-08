@@ -8,9 +8,10 @@ using EfSamurai.Data;
 namespace EfSamurai.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20170508081305_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -20,8 +21,6 @@ namespace EfSamurai.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Healthpoints");
 
                     b.Property<string>("Name");
 
