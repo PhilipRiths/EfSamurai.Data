@@ -8,7 +8,7 @@ using EfSamurai.Domain;
 
 namespace EfSamurai.Data.Migrations
 {
-    [DbContext(typeof(SamuraiContext))]
+    [DbContext(typeof(SamuraiContextModelSnapshot))]
     partial class SamuraiContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -28,52 +28,13 @@ namespace EfSamurai.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("SamuraiBattleId");
+
                     b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Battles");
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.BattleEvent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BatlleLogId");
-
-                    b.Property<DateTime>("BattleDate");
-
-                    b.Property<int?>("BattleLogId");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("SortOrder");
-
-                    b.Property<string>("Summary");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BattleLogId");
-
-                    b.ToTable("BattleEvents");
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.BattleLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BattleId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BattleId")
-                        .IsUnique();
-
-                    b.ToTable("BattleLogs");
+                    b.ToTable("Battle");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.Quotes", b =>
@@ -101,7 +62,11 @@ namespace EfSamurai.Data.Migrations
 
                     b.Property<int>("HairStyleTypes");
 
+                    b.Property<int>("Healthpoints");
+
                     b.Property<string>("Name");
+
+                    b.Property<int>("SamuraiBattleId");
 
                     b.HasKey("Id");
 
@@ -135,22 +100,7 @@ namespace EfSamurai.Data.Migrations
                     b.HasIndex("SamuraiId")
                         .IsUnique();
 
-                    b.ToTable("SecretIdentities");
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.BattleEvent", b =>
-                {
-                    b.HasOne("EfSamurai.Domain.BattleLog", "BattleLog")
-                        .WithMany("BattleEvents")
-                        .HasForeignKey("BattleLogId");
-                });
-
-            modelBuilder.Entity("EfSamurai.Domain.BattleLog", b =>
-                {
-                    b.HasOne("EfSamurai.Domain.Battle", "Battle")
-                        .WithOne("BattleLog")
-                        .HasForeignKey("EfSamurai.Domain.BattleLog", "BattleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.ToTable("SecretIdentity");
                 });
 
             modelBuilder.Entity("EfSamurai.Domain.Quotes", b =>

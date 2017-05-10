@@ -4,13 +4,11 @@ using System.Text;
 
 namespace EfSamurai.Domain
 {
-  public  class QuoteTypes
-    {
-        public int Id { get; set; }
-        public enum Quotes
+
+        public enum QuoteTypes
         {
           Lame, Cheesy, Awesome
     }
-}
-    
+        
     }
+    

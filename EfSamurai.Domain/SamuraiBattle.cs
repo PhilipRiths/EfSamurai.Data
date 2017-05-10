@@ -1,15 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EfSamurai.Domain
 {
-    public class Quotes
+    public class SamuraiBattle
     {
-        public int Id { get; set; }
-        public string SamuraiQuotes { get; set; }
-       public  QuoteTypes QuouteTypes { get; set; }
+
+        public virtual Battle Battle { get; set; }
         public virtual Samurai Samurai { get; set; }
         public int SamuraiId { get; set; }
+        public int BattleId { get; set; }
+
+
     }
 }

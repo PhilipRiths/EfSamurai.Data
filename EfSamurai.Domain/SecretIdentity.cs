@@ -4,11 +4,10 @@ using System.Text;
 
 namespace EfSamurai.Domain
 {
-    public class Quotes
+    public class SecretIdentity
     {
         public int Id { get; set; }
-        public string SamuraiQuotes { get; set; }
-       public  QuoteTypes QuouteTypes { get; set; }
+        public string Realname { get; set; }
         public virtual Samurai Samurai { get; set; }
         public int SamuraiId { get; set; }
     }
